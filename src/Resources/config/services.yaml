@@ -5,5 +5,4 @@ services:
       $parameterBag: "@parameter_bag"
     tags:
       - name: kernel.event_subscriber
-constantinos_security_headers_bundle.my_service:
   class: Constantinos\SecurityHeadersBundle\Services\MyService
