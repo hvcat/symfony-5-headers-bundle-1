@@ -5,5 +5,3 @@ services:
 
     gebler_security_headers.response_subscriber:
         class: Gebler\SecurityHeadersBundle\EventListener\ResponseSubscriber
-        tags:
-            - { name: kernel.event_subscriber }
