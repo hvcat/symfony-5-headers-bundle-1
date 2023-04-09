@@ -1,7 +1,6 @@
 services:
     Constantinos\SecurityHeadersBundle\Services\MyService:
         class: Constantinos\SecurityHeadersBundle\Services\MyService
-        arguments: ['@another_service']
 
     gebler_security_headers.response_subscriber:
         class: Gebler\SecurityHeadersBundle\EventListener\ResponseSubscriber
