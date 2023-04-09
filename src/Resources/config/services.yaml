@@ -4,8 +4,6 @@ services:
         arguments: ['@another_service']
 
     gebler_security_headers.response_subscriber:
-        class: Gebler\SecurityHeadersBundle\EventSubscriber\ResponseSubscriber
-    arguments:
-      $parameterBag: "@parameter_bag"
-    tags:
-      - { name: kernel.event_subscriber }
+        class: Gebler\SecurityHeadersBundle\EventListener\ResponseSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
