@@ -1,10 +1,9 @@
 services:
-Constantinos\SecurityHeadersBundle\Services\MyService:
- class: Constantinos\SecurityHeadersBundle\Services\MyService
-
   gebler_security_headers.response_subscriber:
     class: Gebler\SecurityHeadersBundle\EventSubscriber\ResponseSubscriber
     arguments:
       $parameterBag: "@parameter_bag"
     tags:
-      - { name: kernel.event_subscriber }
+      - name: kernel.event_subscriber
+Constantinos\SecurityHeadersBundle\Services\MyService:
+  class: Constantinos\SecurityHeadersBundle\Services\MyService
