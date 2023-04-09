@@ -1,2 +1,2 @@
 services:
-    Constantinos\SecurityHeadersBundle\Services\MyService
+  Constantinos\SecurityHeadersBundle\Services\MyService:
