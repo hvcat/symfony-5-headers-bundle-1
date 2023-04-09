@@ -6,7 +6,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="constantinos.security_headers_bundle_services.my_service" class="Constantinos\SecurityHeadersBundleServices\Services\MyService">
+        <service id="constantinos_security_headers_bundle.my_service" class="Constantinos\SecurityHeadersBundle\Services\MyService">
         </service>
     </services>
 
