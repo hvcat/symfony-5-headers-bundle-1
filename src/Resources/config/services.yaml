@@ -1,3 +1,2 @@
 services:
-  my_service:
-    class: Constantinos\SecurityHeadersBundle\Services\MyService
+    Constantinos\SecurityHeadersBundle\Services\MyService
