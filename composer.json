@@ -3,7 +3,7 @@
     "description": "Set security headers for Symfony apps through middleware",
     "type": "symfony-bundle",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.1",
         "symfony/framework-bundle": "^6.2"
     },
     "autoload": {
