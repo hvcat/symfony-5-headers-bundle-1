@@ -1,6 +1,6 @@
 services:
-    Constantinos\SecurityHeadersBundle\Services\MyService:
-        class: Constantinos\SecurityHeadersBundle\Services\MyService
+    Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService:
+        class: Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService
 
     gebler_security_headers.response_subscriber:
         class: Gebler\SecurityHeadersBundle\EventListener\ResponseSubscriber
