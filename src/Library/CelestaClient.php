@@ -7,13 +7,21 @@ use GuzzleHttp\HandlerStack;
 use GuzzleRetry\GuzzleRetryMiddleware;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
+use Constantinos\SecurityHeadersBundle\Helper\CacheConstantHelper;
 use Constantinos\SecurityHeadersBundle\Exception\CelestaClientException;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Cache\Adapter\RedisAdapter;
 
 
 class CelestaClient
-{ 
+{   
+    
+    public const GATEWAY_ENDPOINT_AUTHENTICATION = '/oauth/2.0/token';
     private const GATEWAY_ENDPOINT_PLAYER_INFORMATION = '/player/information';
+
+    public const GATEWAY_CACHE_AUTHENTICATION_KEY_TOKEN = 'gateway-cache-authentication-key-token';
+
+    private ?string $applicationToken = null;
 
     private LoggerInterface $logger;
 
@@ -25,11 +33,12 @@ class CelestaClient
         private string $apiUrl,
         private string $clientId,
         private string $clientSecret,
+        private RedisAdapter $appCache,
         LoggerInterface $celestaClientLogger,
     ) {
 
         $this->logger = $celestaClientLogger;
-      
+       
         $stack = HandlerStack::create();
         $stack->push(GuzzleRetryMiddleware::factory());
         $this->client = new Client([
@@ -38,7 +47,15 @@ class CelestaClient
         ]);
     }
 
-
+    /**
+     * @throws CelestaClientException
+     */
+    public function __call(string $name, array $arguments)
+    {
+        $this->authentication();
+        
+        return $this->$name(...$arguments);
+    }
      /**
      * @throws CelestaClientException
      */
@@ -93,7 +110,34 @@ class CelestaClient
             throw new CelestaClientException($message, $e->getResponse()?->getStatusCode() ?? $e->getCode(), $e);
         }
     }
-      /**
+
+/**
+     * @throws CelestaClientException
+     */
+    private function authentication(): void
+    {   
+        $itemCache = $this->appCache->getItem(self::GATEWAY_CACHE_AUTHENTICATION_KEY_TOKEN);
+
+        if (!$itemCache->isHit()) {
+            $endpoint = sprintf($this->apiUrl.'%s', self::GATEWAY_ENDPOINT_AUTHENTICATION);
+            $res = $this->request('POST', $endpoint, [
+                'json' => [
+                    'grant_type' => 'client_credentials',
+                    'client_id' => $this->clientId,
+                    'client_secret' => $this->clientSecret,
+                ],
+            ]);
+
+            $this->applicationToken = $res['access_token'];
+            $itemCache->set($res['access_token']);
+            $itemCache->expiresAfter($res['expires_in'] - CacheConstantHelper::TTL_5_MIN);
+            $this->appCache->save($itemCache);
+        } else {
+            $this->applicationToken = $itemCache->get();
+        }
+    }
+
+    /**
      * @throws CelestaClientException
      */
     private function getPlayerInformation(string $playerToken): array
