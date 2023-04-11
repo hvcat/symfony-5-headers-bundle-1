@@ -9,6 +9,8 @@ services:
             
     Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService:
         class: Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService
+        arguments:
+            - 'Constantinos\SecurityHeadersBundle\Library\CelestaClient'
 
     gebler_security_headers.response_subscriber:
         class: Gebler\SecurityHeadersBundle\EventListener\ResponseSubscriber
