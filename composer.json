@@ -1,10 +1,14 @@
 {
     "name": "constantinosergiou/security-headers-bundle",
+	"version": "1.0.0",
     "description": "Set security headers for Symfony apps through middleware",
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.1",
-        "symfony/framework-bundle": "^6.2"
+        "symfony/framework-bundle": "^6.2",
+        "caseyamcl/guzzle_retry_middleware": "^2.7",
+        "guzzlehttp/guzzle": "^6.5",
+        "symfony/monolog-bundle": "^3.7"
     },
     "autoload": {
         "psr-4": {
