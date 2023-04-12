@@ -1,4 +1,22 @@
 services:
+    Predis\Client:
+        lazy: true
+        arguments:
+            $parameters:
+                scheme: 'redis'
+                host: '%env(REDIS_HOST)%'
+                port: '%env(int:REDIS_PORT)%'
+            $options:
+                prefix: '%env(APP_ENV)%'
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Predis\Client'
+
+    Symfony\Component\Cache\Adapter\RedisAdapter:
+        lazy: true
+        arguments:
+            $redis: '@Predis\Client'
     Constantinos\SecurityHeadersBundle\Library\CelestaClient:
         arguments:
             - '%env(BRAND_NAME)%'
