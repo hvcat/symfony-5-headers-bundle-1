@@ -11,8 +11,6 @@ use Constantinos\SecurityHeadersBundle\Helper\CacheConstantHelper;
 use Constantinos\SecurityHeadersBundle\Exception\CelestaClientException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
-dump('CelestaClient');
-
 
 class CelestaClient
 {   
