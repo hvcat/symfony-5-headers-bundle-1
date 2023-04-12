@@ -21,6 +21,7 @@ class GatewayCelestaService implements ContainerAwareInterface
         protected CelestaClient $client,
         private RedisAdapter $appCache,
         private UrlGeneratorInterface $router,
+        
         ParameterBagInterface $params
     ) {
         $this->paymentSecretToken = $params->get('payment.secret.token');
