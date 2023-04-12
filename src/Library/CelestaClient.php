@@ -51,7 +51,7 @@ class CelestaClient
      * @throws CelestaClientException
      */
     public function __call(string $name, array $arguments)
-    {   dump('heeeeeee');
+    {   
         $this->authentication();
         
         return $this->$name(...$arguments);
