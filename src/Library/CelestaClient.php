@@ -32,9 +32,9 @@ class CelestaClient
         private string $version,
         private string $apiUrl,
         private string $clientId,
-        private string $clientSecret,
-        private RedisAdapter $appCache,
-        LoggerInterface $celestaClientLogger,
+            private string $clientSecret,
+            private RedisAdapter $appCache,
+            LoggerInterface $celestaClientLogger,
     ) {
 
         $this->logger = $celestaClientLogger;
@@ -51,7 +51,7 @@ class CelestaClient
      * @throws CelestaClientException
      */
     public function __call(string $name, array $arguments)
-    {
+    {   dump('heeeeeee');
         $this->authentication();
         
         return $this->$name(...$arguments);
