@@ -31,6 +31,8 @@ services:
         arguments:
             - '@Constantinos\SecurityHeadersBundle\Library\CelestaClient'
             - '@Symfony\Component\Cache\Adapter\RedisAdapter'
+            - '@Symfony\Component\Routing\Generator\UrlGeneratorInterface'
+            - '@Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface'
 
     gebler_security_headers.response_subscriber:
         class: Gebler\SecurityHeadersBundle\EventListener\ResponseSubscriber
