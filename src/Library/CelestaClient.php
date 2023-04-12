@@ -11,6 +11,7 @@ use Constantinos\SecurityHeadersBundle\Helper\CacheConstantHelper;
 use Constantinos\SecurityHeadersBundle\Exception\CelestaClientException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
+dump('CelestaClient');
 
 
 class CelestaClient
@@ -22,11 +23,11 @@ class CelestaClient
     public const GATEWAY_CACHE_AUTHENTICATION_KEY_TOKEN = 'gateway-cache-authentication-key-token';
 
     private ?string $applicationToken = null;
-
+   
     private LoggerInterface $logger;
 
     private Client $client;
-
+    
     public function __construct(
         private string $brand,
         private string $version,
@@ -36,7 +37,7 @@ class CelestaClient
         private RedisAdapter $appCache,
         LoggerInterface $celestaClientLogger,
     ) {
-        dump($this->brand);
+      
         $this->logger = $celestaClientLogger;
        
         $stack = HandlerStack::create();
