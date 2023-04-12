@@ -18,7 +18,7 @@ class GatewayCelestaService implements ContainerAwareInterface
     public function __construct(
         protected CelestaClient $client
     ) {
-    
+        $this->client = $client;
     }
     public function myMethod()
     {
