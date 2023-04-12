@@ -7,7 +7,7 @@ services:
             - '%env(CELESTA_CLIENT_ID)%'
             - '%env(CELESTA_CLIENT_SECRET)%'
     Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService:
-        class: Constantinos\SecurityHeadersBundle\Library\CelestaClient
+        class: Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService
         arguments:
             - '@Constantinos\SecurityHeadersBundle\Library\CelestaClient'
 
