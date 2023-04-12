@@ -7,18 +7,23 @@ use Constantinos\SecurityHeadersBundle\Exception\CelestaClientException;
 use Constantinos\SecurityHeadersBundle\Exception\GatewayCelestaException;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-
+use Symfony\Component\Cache\Adapter\RedisAdapter;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class GatewayCelestaService implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-
+    private string $paymentSecretToken;
 
 
     public function __construct(
-        protected CelestaClient $client
+        protected CelestaClient $client,
+        private RedisAdapter $appCache,
+        private UrlGeneratorInterface $router,
+        ParameterBagInterface $params
     ) {
-    
+        $this->paymentSecretToken = $params->get('payment.secret.token');
     }
     public function myMethod()
     {
