@@ -36,7 +36,7 @@ class CelestaClient
         private RedisAdapter $appCache,
         LoggerInterface $celestaClientLogger,
     ) {
-
+        dump($this->brand);
         $this->logger = $celestaClientLogger;
        
         $stack = HandlerStack::create();
