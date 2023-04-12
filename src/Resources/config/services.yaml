@@ -1,4 +1,6 @@
-services:          
+services:
+    Constantinos\SecurityHeadersBundle\Library\CelestaClient:
+            
     Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService:
         class: Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService
         arguments:
