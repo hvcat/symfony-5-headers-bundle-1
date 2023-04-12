@@ -6,8 +6,6 @@ services:
             - '%env(CELESTA_GATEWAY_API_URL)%'
             - '%env(CELESTA_CLIENT_ID)%'
             - '%env(CELESTA_CLIENT_SECRET)%'
-            - '%env(CELESTA_CLIENT_SECRET)%'
-            - '%env(CELESTA_CLIENT_SECRET)%'
     Constantinos\SecurityHeadersBundle\Services\GatewayCelestaService:
         class: Constantinos\SecurityHeadersBundle\Library\CelestaClient
         arguments:
